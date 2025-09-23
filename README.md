@@ -57,6 +57,24 @@ on:
   workflow_dispatch: # déclenchement manuel possible
 ```
 
+---
+## 🔧 Éléments à personnaliser avant utilisation
+
+Avant de lancer la migration, assure-toi de remplacer les éléments suivants :
+
+- **Nom du compte source** (`SOURCE_USER`) : ton pseudo GitHub **personnel**.  
+- **Nom du compte destination** (`DEST_USER`) : ton pseudo GitHub **professionnel**.  
+- **Secrets GitHub** :  
+  - `SOURCE_TOKEN` → Personal Access Token de ton compte **personnel** avec accès lecture (`repo`).  
+  - `DEST_TOKEN` → Personal Access Token de ton compte **professionnel** avec accès écriture (`repo`).  
+- **Visibilité des dépôts** :  
+  - Dans `migrate.py`, change `private=False` en `private=True` si tu veux que les dépôts soient créés en privé.  
+- **Liste des dépôts à migrer** : complète le fichier `repos.txt` avec un dépôt par ligne (nom exact sur GitHub).  
+- **Planification du workflow** : dans `.github/workflows/migrate.yml`, adapte la ligne `cron:` si tu veux un autre horaire que `9h UTC`.
+
+---
+
+
 ## ▶️ Utilisation
 
 1. Créer un dépôt **migration-repos** sur le compte professionnel.  
