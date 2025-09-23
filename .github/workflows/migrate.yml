@@ -22,7 +22,7 @@ jobs:
 
       - name: Run migration
         env:
-          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+          SOURCE_TOKEN: ${{ secrets.SRC_TOKEN }}
           DEST_TOKEN: ${{ secrets.DEST_TOKEN }}
         run: python migrate.py
 
