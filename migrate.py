@@ -5,8 +5,8 @@ import requests
 SOURCE_TOKEN = os.getenv("SOURCE_TOKEN")
 DEST_TOKEN = os.getenv("DEST_TOKEN")
 
-SOURCE_USER = "TonPseudoPerso"  # compte perso (source)
-DEST_USER = "TonPseudoPro"      # compte pro (destination)
+SOURCE_USER = "ThomasNoel20"  # compte perso (source)
+DEST_USER = "ThomasNoelIT"      # compte pro (destination)
 
 API_URL = "https://api.github.com"
 
@@ -14,9 +14,9 @@ def create_repo_on_dest(repo_name):
     url = f"{API_URL}/user/repos"
     headers = {"Authorization": f"token {DEST_TOKEN}"}
     data = {
-        "name": repo_name,
-        "private": False,   # change en True si tu veux en privé
-        "auto_init": True,  # crée un README vide
+        "name": repo_name.split('/')[1],  # uniquement le nom du repo
+        "private": False,
+        "auto_init": True,
     }
     r = requests.post(url, headers=headers, json=data)
     if r.status_code == 201:
@@ -27,16 +27,19 @@ def create_repo_on_dest(repo_name):
         raise RuntimeError(f"Erreur création dépôt {repo_name}: {r.text}")
 
 def migrate_repo(repo_name):
-    source_url = f"https://{SOURCE_TOKEN}@github.com/{SOURCE_USER}/{repo_name}.git"
-    dest_url = f"https://{DEST_TOKEN}@github.com/{DEST_USER}/{repo_name}.git"
+    repo_only = repo_name.split('/')[1]
+
+    source_url = f"https://{SOURCE_TOKEN}@github.com/{repo_name}.git"
+    dest_url   = f"https://{DEST_TOKEN}@github.com/{DEST_USER}/{repo_only}.git"
 
     subprocess.run(["git", "clone", "--mirror", source_url], check=True)
-    os.chdir(f"{repo_name}.git")
+    os.chdir(f"{repo_only}.git")
 
     subprocess.run(["git", "push", "--mirror", dest_url], check=True)
 
     os.chdir("..")
-    subprocess.run(["rm", "-rf", f"{repo_name}.git"])
+    subprocess.run(["rm", "-rf", f"{repo_only}.git"])
+
 
 if __name__ == "__main__":
     # lire liste de dépôts
