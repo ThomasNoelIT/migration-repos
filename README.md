@@ -17,13 +17,15 @@ Chaque jour, un dépôt est migré automatiquement grâce à un workflow GitHub 
 
 ## 📂 Structure du projet
 
+```text
 migration-repos/
 ├── .github/
-│ └── workflows/
-│ └── migrate.yml # Workflow GitHub Actions
-├── migrate.py # Script Python de migration
-├── repos.txt # Liste des dépôts à migrer
-└── progress.txt # Avancement (mis à jour automatiquement)
+│   └── workflows/
+│       └── migrate.yml   # Workflow GitHub Actions
+├── migrate.py            # Script Python de migration
+├── repos.txt             # Liste des dépôts à migrer
+└── progress.txt          # Avancement (mis à jour automatiquement)
+```
 
 
 ---
