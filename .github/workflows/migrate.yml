@@ -2,8 +2,11 @@ name: Migration Repos
 
 on:
   schedule:
-    - cron: "0 9 * * *"  # tous les jours à 9h UTC
-  workflow_dispatch:      # déclenchement manuel possible
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   migrate:
@@ -11,6 +14,8 @@ jobs:
     steps:
       - name: Checkout migration repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.DEST_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
