@@ -36,7 +36,9 @@ migration-repos/
 Dans `repos.txt`, ajouter un dépôt par ligne (nom exact tel qu’il apparaît sur GitHub) :
 
 mon-projet-1
+
 mon-projet-2
+
 mon-projet-3
 
 
