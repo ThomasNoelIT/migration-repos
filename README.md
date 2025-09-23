@@ -57,17 +57,28 @@ on:
   workflow_dispatch: # déclenchement manuel possible
 ```
 
-▶️ Utilisation
-Créer un dépôt migration-repos sur le compte professionnel.
-Copier ces fichiers (migrate.py, repos.txt, workflow).
-Configurer les secrets SOURCE_TOKEN et DEST_TOKEN.
-Pousser le projet sur GitHub.
-Laisser GitHub Actions tourner : chaque jour un dépôt sera transféré automatiquement.
+## ▶️ Utilisation
 
-📝 Notes
-Les dépôts sont créés publics par défaut. Modifier migrate.py (private=True) pour les créer en privé.
-Le script ajoute un README.md vide lors de la création. Tu pourras le compléter manuellement plus tard.
-La migration inclut tout l’historique Git (git push --mirror).
+1. Créer un dépôt **migration-repos** sur le compte professionnel.  
+2. Copier ces fichiers (`migrate.py`, `repos.txt`, workflow).  
+3. Configurer les secrets **SOURCE_TOKEN** et **DEST_TOKEN**.  
+4. Pousser le projet sur GitHub.  
+5. Laisser GitHub Actions tourner : chaque jour un dépôt sera transféré automatiquement.  
 
-📜 Licence
-Ce projet est fourni tel quel, sans garantie. Utilisation libre et modification autorisée.
+---
+
+## 📝 Notes
+
+- Les dépôts sont créés **publics par défaut**.  
+  👉 Modifier `migrate.py` (`private=True`) pour les créer en privé.  
+- Le script ajoute un `README.md` vide lors de la création.  
+  👉 Tu pourras le compléter manuellement plus tard.  
+- La migration inclut **tout l’historique Git** (`git push --mirror`).  
+
+---
+
+## 📜 Licence
+
+Ce projet est fourni **tel quel, sans garantie**.  
+Utilisation libre et modification autorisée.
+
