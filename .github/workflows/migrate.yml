@@ -1,0 +1,35 @@
+name: Migration Repos
+
+on:
+  schedule:
+    - cron: "0 9 * * *"  # tous les jours à 9h UTC
+  workflow_dispatch:      # déclenchement manuel possible
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout migration repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run migration
+        env:
+          SOURCE_TOKEN: ${{ secrets.SOURCE_TOKEN }}
+          DEST_TOKEN: ${{ secrets.DEST_TOKEN }}
+        run: python migrate.py
+
+      - name: Commit progress
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add progress.txt
+          git commit -m "update progress" || echo "No changes"
+          git push
